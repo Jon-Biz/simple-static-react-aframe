@@ -1,26 +1,62 @@
-import "babel-polyfill"
-import React, {Component} from 'react'
-import ReactDom from 'react-dom'
+import 'babel-polyfill'
+import aframe from 'aframe'
+import {Animation, Entity, Scene} from 'aframe-react'
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-require('./style.css')
+import Camera from './components/Camera'
+import Cursor from './components/Cursor'
+import Sky from './components/Sky'
 
-class HelloWorld extends Component{
+class HelloWorld extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      color: 'red'
+    }
+  }
 
-  render() {
+  changeColor() {
+    const colors = ['red', 'orange', 'yellow', 'green', 'blue']
+    this.setState({
+      color: colors[Math.floor(Math.random() * colors.length)],
+    });
+  };
+
+  render () {
     return (
-      <div>
-        <h1>Hello World.</h1>
-        Don't forget to:
-        <ul>
-          <li>
-            Run 'npm run build' before uploading you public directory to your website.
-          </li>
-        </ul>
-      </div>
-    )
+      <Scene>
+        <Camera><Cursor/></Camera>
+
+        <Sky/>
+
+        <Entity light={{type: 'ambient', color: '#888'}}/>
+        <Entity light={{type: 'directional', intensity: 0.5}} position={[-1, 1, 0]}/>
+        <Entity light={{type: 'directional', intensity: 1}} position={[1, 1, 0]}/>
+
+        <Entity geometry="primitive: box" material={{color: 'blue'}}
+                onClick={this.changeColor.bind(this)}
+                position="0 0 -5">
+          <Animation attribute="rotation" dur="5000" repeat="indefinite" to="0 360 360"/>
+        </Entity>
+
+        <Entity geometry="primitive: box" material={{color: 'red'}}
+                onClick={this.changeColor.bind(this)}
+                position="1 0 -5">
+          <Animation attribute="rotation" dur="5000" repeat="indefinite" to="0 360 360"/>
+        </Entity>
+
+        <Entity geometry="primitive: box" material={{color: 'blue'}}
+                onClick={this.changeColor.bind(this)}
+                position="0 1 -5">
+          <Animation attribute="rotation" dur="5000" repeat="indefinite" to="0 360 360"/>
+        </Entity>
+
+      </Scene>
+    );
   }
 }
 
 const content = document.getElementById('app')
 
-ReactDom.render(<HelloWorld />, content)
+ReactDOM.render(<HelloWorld />, content)
