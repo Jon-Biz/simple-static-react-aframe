@@ -1,14 +1,16 @@
 import 'babel-polyfill'
 import aframe from 'aframe'
 import {Animation, Entity, Scene} from 'aframe-react'
-import React from 'react'
+import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 
-import Camera from './components/Camera'
 import Cursor from './components/Cursor'
 import Sky from './components/Sky'
+import Camera from './components/Camera'
+import Earth from './components/Earth'
+import Lighting from './components/Lighting'
 
-class HelloWorld extends React.Component {
+class HelloWorld extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,41 +18,54 @@ class HelloWorld extends React.Component {
     }
   }
 
-  changeColor() {
-    const colors = ['red', 'orange', 'yellow', 'green', 'blue']
-    this.setState({
-      color: colors[Math.floor(Math.random() * colors.length)],
-    });
-  };
-
   render () {
+
+    const changeColor = () => {
+      const colors = ['red', 'orange', 'yellow', 'green', 'blue']
+      const color = colors[Math.floor(Math.random() * colors.length)]
+      this.setState({color})
+    }
+
     return (
       <Scene>
-        <Camera><Cursor/></Camera>
+        <a-assets>
+          <img id="carpet" src="./carpet.jpg" />
+        </a-assets>
 
-        <Sky/>
+        <Camera>
+          <Cursor/>
+        </Camera>
 
-        <Entity light={{type: 'ambient', color: '#888'}}/>
-        <Entity light={{type: 'directional', intensity: 0.5}} position={[-1, 1, 0]}/>
-        <Entity light={{type: 'directional', intensity: 1}} position={[1, 1, 0]}/>
+        <Sky />
+        <Earth />
 
-        <Entity geometry="primitive: box" material={{color: 'blue'}}
-                onClick={this.changeColor.bind(this)}
-                position="0 0 -5">
-          <Animation attribute="rotation" dur="5000" repeat="indefinite" to="0 360 360"/>
+        <Lighting />
+
+        <Entity
+          material={{color: this.state.color}}
+          onClick={changeColor}
+          position="0 0 -5"
+          geometry={{primitive:"box"}}
+          scale={"2 1 0.5"}
+          >
+          <Animation attribute="rotation" dur="2000" repeat="indefinite" to="0 360 360"/>
         </Entity>
 
-        <Entity geometry="primitive: box" material={{color: 'red'}}
-                onClick={this.changeColor.bind(this)}
-                position="1 0 -5">
-          <Animation attribute="rotation" dur="5000" repeat="indefinite" to="0 360 360"/>
-        </Entity>
-
-        <Entity geometry="primitive: box" material={{color: 'blue'}}
-                onClick={this.changeColor.bind(this)}
-                position="0 1 -5">
-          <Animation attribute="rotation" dur="5000" repeat="indefinite" to="0 360 360"/>
-        </Entity>
+          <Entity
+            material={
+              { src: '#carpet'
+              }
+            }
+            position={[0,-5, 0]}
+            geometry={
+              { primitive:"plane"
+              , width: "20"
+              , height: "20"
+              }
+            }
+            rotation={[-90, 0, 0]}
+            >
+          </Entity>
 
       </Scene>
     );

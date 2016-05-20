@@ -1,11 +1,23 @@
 {
-  "name": "Simple-Static-React",
+  "name": "Simple-Static-React-Aframe",
   "version": "1.0.0",
-  "description": "Minimal boilerplate and configuration for the development of static react & es6 sites",
-  "repository": "https://github.com/Jon-Biz/simple-static-react",
+  "description": "Minimal boilerplate and configuration for the development of static VR sites using aframe, react & es6",
+  "repository": "https://github.com/Jon-Biz/simple-static-react-aframe",
+  "keywords": [
+    "VR",
+    "AR",
+    "virtual reality",
+    "augmented reality",
+    "boilerplate",
+    "example",
+    "react",
+    "reactjs",
+    "static",
+    "es6"
+  ],
   "scripts": {
-    "webpack":"node ./node_modules/webpack/bin/webpack.js",
-    "webpack-dev-server":"node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "webpack": "node ./node_modules/webpack/bin/webpack.js",
+    "webpack-dev-server": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "build": "npm run webpack",
     "dev": "npm run webpack-dev-server -s -- --progress --colors --port 4000 --content-base public"
   },
