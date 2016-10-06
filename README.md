@@ -30,7 +30,7 @@ provides a React Components for Aframe's `<a-scene>`, `<a-entity>` and `<a-anima
 Clone the repo and install the node dependencies.
 
 ```
-git clone https://github.com/Jon-Biz/simple-static-react
+git clone https://github.com/Jon-Biz/simple-static-react-aframe
 cd simple-static-react-aframe
 npm i
 ```
