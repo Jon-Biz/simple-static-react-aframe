@@ -56,3 +56,8 @@ Run the npm script 'build' to update `style.css` and `index.js` in the `public` 
 ```
 npm run build
 ```
+
+###Deploy Now
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/Jon-Biz/simple-static-react-aframe)
+
