@@ -2,6 +2,8 @@
 
 This repo is minimal boilerplate for VR sites written in React and Aframe. 
 
+**It's also out of date, and not working in modern browsers. Pull requests welcome.**
+
 It is intended for to get you up and developing with a minimum of fuss and configuration for a static, single page React & Aframe site. This repo gives you:
 
 - ES6/React (with sourcemaps)
