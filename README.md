@@ -1,8 +1,8 @@
-#Simple Static React-Aframe
+# Simple Static React-Aframe
 
 This repo is minimal boilerplate for VR sites written in React and Aframe. 
 
-**It's also out of date, and not working in modern browsers. Pull requests welcome.**
+## 2/14/22 It's also out of date, and appears not to be working in modern browsers. Pull requests welcome.
 
 It is intended for to get you up and developing with a minimum of fuss and configuration for a static, single page React & Aframe site. This repo gives you:
 
